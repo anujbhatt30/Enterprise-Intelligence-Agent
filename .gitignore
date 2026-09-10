@@ -1,0 +1,22 @@
+# Generated data (recreated by running create_db.py / ingest.py)
+data/sales.db
+rag/index.pkl
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+
+# OS/editor junk
+.DS_Store
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/

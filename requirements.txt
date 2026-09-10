@@ -1,0 +1,8 @@
+scikit-learn>=1.3
+numpy>=1.24
+pandas>=2.0
+anthropic>=0.34
+python-dotenv>=1.0
+
+# Optional: only needed if you use generate_ollama.py instead of generate.py
+# ollama>=0.3
