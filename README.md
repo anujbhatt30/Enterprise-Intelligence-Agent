@@ -248,7 +248,7 @@ tool end-to-end.
   filenames), a feedback (👍/👎) loop on answers, and support for PDF/DOCX
   source documents in addition to `.txt`.
 
----
+
 
 Author: Anuj Bhatt....
 
