@@ -120,6 +120,82 @@ enterprise_agent/
 
 ---
 
+1. RAG — Document Intelligence:- 
+
+Company Documents
+       ↓
+Document Chunking
+       ↓
+TF-IDF Index
+       ↓
+Query
+       ↓
+Cosine Similarity
+       ↓
+Top Relevant Chunks
+       ↓
+Local LLM
+       ↓
+Answer + Source
+
+---
+
+🗄️ 2. SQL Agent — Database Intelligence:-
+
+Natural Language Question
+          ↓
+       LLM
+          ↓
+      SQL Query
+          ↓
+   Safety Validation
+          ↓
+      SQLite DB
+          ↓
+       Result
+          ↓
+ Plain-English Explanation
+
+---
+
+📊 3. SQL + Python — Business Analytics:-
+
+User Question
+     ↓
+SQL Data Retrieval
+     ↓
+Pandas
+     ↓
+Aggregation
+     ↓
+Growth Calculation
+     ↓
+Computed Table
+     ↓
+LLM Interpretation
+
+---
+
+🧠 4. Reasoning Layer:-
+
+Example:-
+
+"Why did sales decline and what should management do?"
+
+Business Data
+      ↓
+Analysis
+      ↓
+Observed Trends
+      ↓
+LLM Reasoning
+      ↓
+Possible Causes
+      ↓
+Business Recommendations
+
+---
+
 ## Setup
 
 **1. Clone the repository**
