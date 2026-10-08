@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Enterprise Intelligence Agent",
+    "output": "enterprise-intelligence-agent.html",
+    "quality_profile": "showcase",
+    "viewBox": [1395, 800],
+    "views": [
+      {
+        "id": "question-to-answer",
+        "label": "Question to answer",
+        "focus": ["business-user", "natural-query", "ai-agent", "query-understanding", "conversation-memory", "tool-routing", "data-retrieval", "data-analysis", "business-answer"],
+        "note": "Follow how a business question becomes a clear, actionable response."
+      },
+      {
+        "id": "structured-data",
+        "label": "Structured data",
+        "focus": ["tool-routing", "sql-tool", "sql-database", "data-retrieval"],
+        "note": "Trace the route for information stored in the SQL database."
+      },
+      {
+        "id": "file-data",
+        "label": "Excel files",
+        "focus": ["tool-routing", "excel-tool", "excel-files", "data-retrieval"],
+        "note": "Trace the route for information stored in Excel files."
+      },
+      {
+        "id": "rag-knowledge",
+        "label": "RAG knowledge",
+        "focus": ["tool-routing", "documents", "document-processing", "text-chunking", "embeddings", "vector-database", "context-retrieval", "rag-llm", "business-answer"],
+        "note": "Follow document preparation, vector retrieval, and context-aware answer generation."
+      }
+    ]
+  },
+  "components": [
+    { "id": "business-user", "type": "external", "label": "Business User", "sublabel": "Asks a business question", "pos": [36, 80], "size": [138, 70] },
+    { "id": "natural-query", "type": "frontend", "label": "Natural Language Query", "sublabel": "Everyday business wording", "pos": [204, 80], "size": [168, 70] },
+    { "id": "ai-agent", "type": "backend", "label": "AI / LLM Agent", "sublabel": "Orchestrates the request", "pos": [399, 80], "size": [158, 70] },
+    { "id": "conversation-memory", "type": "backend", "label": "Conversation Context / Memory", "sublabel": "Feb. follows Jan. revenue question", "pos": [581, 80], "size": [210, 70] },
+    { "id": "query-understanding", "type": "backend", "label": "Query Understanding", "sublabel": "Identify intent and data needs", "pos": [815, 80], "size": [184, 70] },
+    { "id": "tool-routing", "type": "backend", "label": "Determine Information Source", "sublabel": "Auto-select tool by query", "pos": [1023, 80], "size": [188, 70] },
+    { "id": "sql-tool", "type": "backend", "label": "SQL Query Tool", "sublabel": "Structured-data lookup", "pos": [550, 320], "size": [168, 68] },
+    { "id": "sql-database", "type": "database", "label": "SQL Database", "sublabel": "Structured business data", "pos": [770, 320], "size": [166, 68] },
+    { "id": "excel-tool", "type": "backend", "label": "Excel Query Tool", "sublabel": "File-data lookup", "pos": [980, 320], "size": [168, 68] },
+    { "id": "excel-files", "type": "external", "label": "Excel Files", "sublabel": "Workbooks and spreadsheets", "pos": [1200, 320], "size": [166, 68] },
+    { "id": "data-retrieval", "type": "backend", "label": "SQL / Excel Data Retrieval", "sublabel": "Return relevant business data", "pos": [634, 520], "size": [170, 68] },
+    { "id": "data-analysis", "type": "backend", "label": "Data Analysis", "sublabel": "Analyze SQL and Excel results", "pos": [828, 520], "size": [166, 68] },
+    { "id": "business-answer", "type": "frontend", "label": "Business Answer", "sublabel": "Clear, user-ready response", "pos": [1210, 520], "size": [174, 68] },
+    { "id": "documents", "type": "external", "label": "Documents", "sublabel": "Knowledge source", "pos": [122, 640], "size": [130, 68] },
+    { "id": "document-processing", "type": "backend", "label": "Document Processing", "sublabel": "Prepare documents", "pos": [276, 640], "size": [130, 68] },
+    { "id": "text-chunking", "type": "backend", "label": "Text Chunking", "sublabel": "Split into chunks", "pos": [430, 640], "size": [130, 68] },
+    { "id": "embeddings", "type": "backend", "label": "Embeddings", "sublabel": "Vector representation", "pos": [584, 640], "size": [130, 68] },
+    { "id": "vector-database", "type": "database", "label": "Vector Database", "sublabel": "Store vectors", "pos": [738, 640], "size": [130, 68] },
+    { "id": "context-retrieval", "type": "backend", "label": "Retrieved Document Context", "sublabel": "Relevant knowledge passages", "pos": [892, 640], "size": [184, 68] },
+    { "id": "rag-llm", "type": "backend", "label": "LLM / Answer Generation", "sublabel": "Business data + RAG context", "pos": [1018, 520], "size": [168, 68] }
+  ],
+  "connections": [
+    { "id": "user-enters-query", "from": "business-user", "to": "natural-query", "variant": "emphasis" },
+    { "id": "query-to-agent", "from": "natural-query", "to": "ai-agent" },
+    { "id": "agent-reads-conversation-memory", "from": "ai-agent", "to": "conversation-memory" },
+    { "id": "memory-supports-query-understanding", "from": "conversation-memory", "to": "query-understanding" },
+    { "id": "understanding-to-routing", "from": "query-understanding", "to": "tool-routing", "variant": "emphasis" },
+    { "id": "route-to-sql", "from": "tool-routing", "to": "sql-tool", "label": "Sales revenue → SQL", "fromSide": "bottom", "toSide": "top" },
+    { "id": "sql-tool-queries-database", "from": "sql-tool", "to": "sql-database" },
+    { "id": "route-to-excel", "from": "tool-routing", "to": "excel-tool", "label": "Spreadsheet data → Excel", "fromSide": "bottom", "toSide": "top", "labelDy": 58 },
+    { "id": "excel-tool-reads-files", "from": "excel-tool", "to": "excel-files" },
+    { "id": "database-results", "from": "sql-database", "to": "data-retrieval", "label": "Retrieved business data", "fromSide": "bottom", "toSide": "top" },
+    { "id": "file-results", "from": "excel-files", "to": "data-retrieval", "label": "Retrieved spreadsheet data", "fromSide": "bottom", "toSide": "top" },
+    { "id": "retrieval-to-analysis", "from": "data-retrieval", "to": "data-analysis" },
+    { "id": "analysis-to-answer", "from": "data-analysis", "to": "rag-llm" },
+    { "id": "answer-to-user", "from": "business-answer", "to": "business-user", "label": "Return answer", "fromSide": "right", "toSide": "top", "via": [[1393, 554], [1393, 30], [105, 30]], "labelSegment": 2 },
+    { "id": "route-to-rag", "from": "tool-routing", "to": "context-retrieval", "label": "Policy/document question → RAG", "fromSide": "bottom", "toSide": "top", "via": [[1117, 180], [20, 180], [20, 600], [984, 600]], "labelSegment": 2, "variant": "emphasis" },
+    { "id": "documents-to-processing", "from": "documents", "to": "document-processing" },
+    { "id": "processing-to-chunking", "from": "document-processing", "to": "text-chunking" },
+    { "id": "chunking-to-embeddings", "from": "text-chunking", "to": "embeddings" },
+    { "id": "embeddings-to-vector-db", "from": "embeddings", "to": "vector-database" },
+    { "id": "vector-db-to-context", "from": "vector-database", "to": "context-retrieval", "label": "Retrieved document context", "labelDy": 58 },
+    { "id": "context-to-llm", "from": "context-retrieval", "to": "rag-llm", "label": "Provide RAG context", "fromSide": "right", "toSide": "bottom", "variant": "emphasis" },
+    { "id": "rag-answer-to-business-answer", "from": "rag-llm", "to": "business-answer" }
+  ]
+}
