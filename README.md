@@ -326,7 +326,8 @@ tool end-to-end.
 
 
 ---
-Author: Anuj Bhatt....
+
+Author: Anuj Bhatt
 
 ---
 
